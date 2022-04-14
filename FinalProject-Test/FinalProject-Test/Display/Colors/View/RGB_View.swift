@@ -24,13 +24,13 @@ final class RGB_View: UIView {
                                                  textColor: .white,
                                                  cornerRadius: 13)
     
-//    lazy var dismissButton = BaseUIButton(normalTitle: "✕",
-//                                                  highlightedTitle: nil,
-//                                                  setNormalTitleColor: .white,
-//                                                  setHighlightedTitleColor: nil,
-//                                                  fontSize: 30,
-//                                                  fontWeight: .medium,
-//                                                  cornerRadius: 0)
+    lazy var dismissButton = BaseUIButton(normalTitle: "✕",
+                                                  highlightedTitle: nil,
+                                                  setNormalTitleColor: .white,
+                                                  setHighlightedTitleColor: nil,
+                                                  fontSize: 30,
+                                                  fontWeight: .medium,
+                                                  cornerRadius: 0)
     
     lazy var colorView = BaseUIView(backgroundColor: .red)
             
@@ -61,7 +61,7 @@ extension RGB_View {
         
         addSubview(colorView)
         colorView.addSubview(infoHideItems)
-//        colorView.addSubview(dismissButton)
+        colorView.addSubview(dismissButton)
         colorView.addSubview(segmentedControl)
         
         NSLayoutConstraint.activate([
@@ -78,10 +78,10 @@ extension RGB_View {
             segmentedControl.heightAnchor.constraint(equalToConstant: 31),
             segmentedControl.centerXAnchor.constraint(equalTo: colorView.centerXAnchor),
 
-//            dismissButton.topAnchor.constraint(equalTo: colorView.safeAreaLayoutGuide.topAnchor, constant: 10),
-//            dismissButton.leadingAnchor.constraint(equalTo: colorView.leadingAnchor, constant: 20),
-//            dismissButton.heightAnchor.constraint(equalToConstant: 45),
-//            dismissButton.widthAnchor.constraint(equalToConstant: 45)
+            dismissButton.topAnchor.constraint(equalTo: colorView.safeAreaLayoutGuide.topAnchor, constant: 10),
+            dismissButton.leadingAnchor.constraint(equalTo: colorView.leadingAnchor, constant: 20),
+            dismissButton.heightAnchor.constraint(equalToConstant: 45),
+            dismissButton.widthAnchor.constraint(equalToConstant: 45)
         ])
     }
 }
@@ -92,7 +92,7 @@ extension RGB_View {
         UIView.animate(withDuration: 0.3) {
             self.isBleach = !self.isBleach
             self.segmentedControl.alpha = self.isBleach ? 0 : 1.0
-//            self.dismissButton.alpha = self.isBleach ? 0 : 1.0
+            self.dismissButton.alpha = self.isBleach ? 0 : 1.0
             self.infoHideItems.alpha = self.isBleach ? 0 : 1.0
         }
     }
@@ -100,8 +100,8 @@ extension RGB_View {
     @objc func segmentAction(_ sender: UISegmentedControl) {
         colorView.backgroundColor = colorOpt[segmentedControl.selectedSegmentIndex]
         infoHideItems.textColor = colorOptItem[segmentedControl.selectedSegmentIndex]
-//        dismissButton.tintColor = colorOptItem[segmentedControl.selectedSegmentIndex]
-//        dismissButton.setTitleColor(colorOptItem[segmentedControl.selectedSegmentIndex], for: .normal)
+        dismissButton.tintColor = colorOptItem[segmentedControl.selectedSegmentIndex]
+        dismissButton.setTitleColor(colorOptItem[segmentedControl.selectedSegmentIndex], for: .normal)
         
     }
     

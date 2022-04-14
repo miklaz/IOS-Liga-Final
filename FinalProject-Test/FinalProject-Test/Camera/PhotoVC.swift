@@ -31,9 +31,10 @@ final class PhotoVC: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.photoView.takePhotoButton.addTarget(self, action: #selector(takePicture), for: .touchUpInside)
-        self.photoView.savePhotoButton.addTarget(self, action: #selector(savePicture), for: .touchUpInside)
-        self.photoView.savePhotoButton.alpha = 0
+        photoView.takePhotoButton.addTarget(self, action: #selector(takePicture), for: .touchUpInside)
+        photoView.savePhotoButton.addTarget(self, action: #selector(savePicture), for: .touchUpInside)
+        photoView.savePhotoButton.alpha = 0
+        photoView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
     }
     
     override func viewWillLayoutSubviews() {
@@ -82,8 +83,12 @@ final class PhotoVC: UIViewController  {
                                        nil)
         showAlert("Photo saved!")
     }
+    
+    @objc private func dismissAction() {
+        self.dismiss(animated: true, completion: nil)
+        print("dismis")
+    }
 }
-
 
 extension PhotoVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     // MARK: - Methods
@@ -110,5 +115,4 @@ extension PhotoVC: UINavigationControllerDelegate, UIImagePickerControllerDelega
         // Закрываем UIImagePickerController
         picker.dismiss(animated: true)
     }
-    
 }

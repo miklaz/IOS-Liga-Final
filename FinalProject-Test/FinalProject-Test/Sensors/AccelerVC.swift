@@ -31,6 +31,7 @@ final class AccelerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         accelerView.statusLabel.text = "Shake your device"
+        accelerView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
         self.becomeFirstResponder()
     }
     
@@ -58,5 +59,9 @@ final class AccelerVC: UIViewController {
     
 // MARK: - To do
 
+    @objc private func dismissAction() {
+        print("dismis")
+        dismiss(animated: true, completion: nil)
+    }
     
 }

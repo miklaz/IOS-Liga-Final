@@ -17,21 +17,21 @@ final class BWG_View: UIView {
     private let colorOptItem = [UIColor.white, UIColor.black, UIColor.white]
     private var isBleach = false
     
-    private lazy var infoHideItems = BaseUILabel(text: "Tap to hide items",
+    lazy var infoHideItems = BaseUILabel(text: "Tap to hide items",
                                                  fontSize: 20,
                                                  fontWeight: .medium,
                                                  textColor: .white,
                                                  cornerRadius: 13)
     
-//    private lazy var dismissButton = BaseUIButton(normalTitle: "✕",
-//                                                  highlightedTitle: nil,
-//                                                  setNormalTitleColor: .white,
-//                                                  setHighlightedTitleColor: nil,
-//                                                  fontSize: 30,
-//                                                  fontWeight: .medium,
-//                                                  cornerRadius: 0)
+    lazy var dismissButton = BaseUIButton(normalTitle: "✕",
+                                                  highlightedTitle: nil,
+                                                  setNormalTitleColor: .white,
+                                                  setHighlightedTitleColor: nil,
+                                                  fontSize: 30,
+                                                  fontWeight: .medium,
+                                                  cornerRadius: 0)
     
-    private lazy var colorView = BaseUIView(backgroundColor: .black)
+    lazy var colorView = BaseUIView(backgroundColor: .black)
             
     private lazy var segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: items)
@@ -58,11 +58,9 @@ extension BWG_View{
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         colorView.addGestureRecognizer(tapGestureRecognizer)
     
-//        dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
-
         addSubview(colorView)
         colorView.addSubview(infoHideItems)
-//        colorView.addSubview(dismissButton)
+        colorView.addSubview(dismissButton)
         colorView.addSubview(segmentedControl)
         
         NSLayoutConstraint.activate([
@@ -79,10 +77,10 @@ extension BWG_View{
             segmentedControl.heightAnchor.constraint(equalToConstant: 31),
             segmentedControl.centerXAnchor.constraint(equalTo: colorView.centerXAnchor),
 
-//            dismissButton.topAnchor.constraint(equalTo: colorView.safeAreaLayoutGuide.topAnchor, constant: 10),
-//            dismissButton.leadingAnchor.constraint(equalTo: colorView.leadingAnchor, constant: 20),
-//            dismissButton.heightAnchor.constraint(equalToConstant: 45),
-//            dismissButton.widthAnchor.constraint(equalToConstant: 45)
+            dismissButton.topAnchor.constraint(equalTo: colorView.safeAreaLayoutGuide.topAnchor, constant: 10),
+            dismissButton.leadingAnchor.constraint(equalTo: colorView.leadingAnchor, constant: 20),
+            dismissButton.heightAnchor.constraint(equalToConstant: 45),
+            dismissButton.widthAnchor.constraint(equalToConstant: 45)
         ])
     }
 }
@@ -92,23 +90,18 @@ extension BWG_View {
     @objc func handleTap() {
         self.isBleach = !self.isBleach
         self.segmentedControl.alpha = self.isBleach ? 0 : 1.0
-        //self.dismissButton.alpha = self.isBleach ? 0 : 1.0
+        self.dismissButton.alpha = self.isBleach ? 0 : 1.0
         self.infoHideItems.alpha = self.isBleach ? 0 : 1.0
     }
     
     @objc func segmentAction(_ sender: UISegmentedControl) {
         colorView.backgroundColor = colorOpt[segmentedControl.selectedSegmentIndex]
         infoHideItems.textColor = colorOptItem[segmentedControl.selectedSegmentIndex]
-//        dismissButton.tintColor = colorOptItem[segmentedControl.selectedSegmentIndex]
-        //dismissButton.setTitleColor(colorOptItem[segmentedControl.selectedSegmentIndex], for: .normal)
-        
+        dismissButton.tintColor = colorOptItem[segmentedControl.selectedSegmentIndex]
+        dismissButton.setTitleColor(colorOptItem[segmentedControl.selectedSegmentIndex], for: .normal)
     }
     
-    @objc func dismissAction() {
-        //self.dismiss(animated: true, completion: nil)
-        print("dismis")
-    }
-    
+
 //    @objc
 //    private func toNavigationVC(){
 //        goToNavigationVC!()

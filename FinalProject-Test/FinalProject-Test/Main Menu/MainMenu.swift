@@ -13,52 +13,32 @@ final class MainMenu: UIViewController {
     private let standardSpacing: CGFloat = 16
     
     private let data = [
-        MenuModel(testName: "Touch", testImage: UIImage(systemName: "scribble.variable")!,
-                  viewController: TouchVC()),
-        MenuModel(testName: "RGB", testImage: UIImage(systemName: "rectangle.split.3x1")!,
-                  viewController: RGB_VC(RGB_View())),
-        MenuModel(testName: "BWG", testImage: UIImage(systemName: "rectangle.split.3x1.fill")!,
-                  viewController: BWG_VC(BWG_View())),
-        MenuModel(testName: "Contrast", testImage: UIImage(systemName: "checkerboard.rectangle")!,
-                  viewController: ContrastAndGammaVC(ContrastAndGammaView())),
-        MenuModel(testName: "Main Speaker", testImage: UIImage(systemName: "speaker.wave.2.fill")!,
-                  viewController: MainSpeakVC(MainSpeakView())),
-        MenuModel(testName: "Front Speaker", testImage: UIImage(systemName: "iphone.homebutton.radiowaves.left.and.right")!,
-                  viewController: FrontSpeakVC(FrontSpeakView())),
-        MenuModel(testName: "Headphones", testImage: UIImage(systemName: "beats.earphones")!,
-                  viewController: HeadphonesSpeakVC(HeadphonesSpeakView())),
-        MenuModel(testName: "Wi-Fi", testImage: UIImage(systemName: "wifi")!,
-                  viewController: WiFi_VC(StandartConnectionTestView())),
-        MenuModel(testName: "Cellular", testImage: UIImage(systemName: "simcard.fill")!,
-                  viewController: CellularVC(StandartConnectionTestView())),
-        MenuModel(testName: "Bluetooth", testImage: UIImage(systemName: "airplayaudio")!,
-                  viewController: BluetoothVC(StandartConnectionTestView())),
-        MenuModel(testName: "Location", testImage: UIImage(systemName: "mappin.and.ellipse")!,
-                  viewController: LocationVC(LocationView())),
-        MenuModel(testName: "Camera", testImage: UIImage(systemName: "camera.fill")!,
-                  viewController: PhotoVC(PhotoView())),
-        MenuModel(testName: "Flash", testImage: UIImage(systemName: "flashlight.on.fill")!,
-                  viewController: FlashVC(FlashView())),
-        MenuModel(testName: "AmbiLight", testImage: UIImage(systemName: "light.max")!,
-                  viewController: AmbientLightSensorVC(StandartSensorsTestView())),
-        MenuModel(testName: "Accelerometer", testImage: UIImage(systemName: "iphone.homebutton.landscape")!,
-                  viewController: AccelerVC(StandartSensorsTestView())),
-        MenuModel(testName: "Distanсe", testImage: UIImage(systemName: "ruler.fill")!,
-                  viewController: DistanсeVC(StandartSensorsTestView())),
-        MenuModel(testName: "Authorization", testImage: UIImage(systemName: "faceid")!,
-                  viewController: AuthorizationVC(AuthorizationView())),
-        MenuModel(testName: "Compass", testImage: UIImage(systemName: "location.north.circle")!,
-                  viewController: CompassVC())
-                  ]
+        MenuModel(testName: "Touch", testImage: UIImage(systemName: "scribble.variable")!),
+        MenuModel(testName: "RGB", testImage: UIImage(systemName: "rectangle.split.3x1")!),
+        MenuModel(testName: "BWG", testImage: UIImage(systemName: "rectangle.split.3x1.fill")!),
+        MenuModel(testName: "Contrast", testImage: UIImage(systemName: "checkerboard.rectangle")!),
+        MenuModel(testName: "Main Speaker", testImage: UIImage(systemName: "speaker.wave.2.fill")!),
+        MenuModel(testName: "Front Speaker", testImage: UIImage(systemName: "iphone.homebutton.radiowaves.left.and.right")!),
+        MenuModel(testName: "Headphones", testImage: UIImage(systemName: "beats.earphones")!),
+        MenuModel(testName: "Wi-Fi", testImage: UIImage(systemName: "wifi")!),
+        MenuModel(testName: "Cellular", testImage: UIImage(systemName: "simcard.fill")!),
+        MenuModel(testName: "Bluetooth", testImage: UIImage(systemName: "airplayaudio")!),
+        MenuModel(testName: "Location", testImage: UIImage(systemName: "mappin.and.ellipse")!),
+        MenuModel(testName: "Camera", testImage: UIImage(systemName: "camera.fill")!),
+        MenuModel(testName: "Flash", testImage: UIImage(systemName: "flashlight.on.fill")!),
+        MenuModel(testName: "AmbiLight", testImage: UIImage(systemName: "light.max")!),
+        MenuModel(testName: "Accelerometer", testImage: UIImage(systemName: "iphone.homebutton.landscape")!),
+        MenuModel(testName: "Distanсe", testImage: UIImage(systemName: "ruler.fill")!),
+        MenuModel(testName: "Authorization", testImage: UIImage(systemName: "faceid")!),
+        MenuModel(testName: "Compass", testImage: UIImage(systemName: "location.north.circle")!)
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configCollectionView()
-//        collectionView?.register(HeaderCollectionReusableView.self,
-//                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-//                                 withReuseIdentifier: HeaderCollectionReusableView.identifier)
-
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Mega Test"
     }
 }
 
@@ -85,6 +65,12 @@ extension MainMenu {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
+    
+    private func newVC(viewController: UIViewController) {
+        let newViewController = viewController
+        newViewController.modalPresentationStyle = .fullScreen
+        present(newViewController, animated: true, completion: nil)
+    }
 }
 
 extension MainMenu: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -100,20 +86,50 @@ extension MainMenu: UICollectionViewDelegate, UICollectionViewDataSource {
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.identifier, for: indexPath as IndexPath) as! HeaderCollectionReusableView
-//        header.configure()
-//
-//        return header
-//    }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSelection selection: Int) -> CGSize {
-//        return CGSize(width: view.frame.size.width-40, height: 60)
-//    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("You selected cell \(data[indexPath.row].testName)!")
-        let newViewController = data[indexPath.row].viewController
-        navigationController?.pushViewController(newViewController, animated: true)
+        
+        let route = routeVC.init(rawValue: indexPath.row) //indexPath.row
+        switch route {
+        case .touch:
+            newVC(viewController: TouchVC(CanvasTouch()))
+        case .rgb:
+            newVC(viewController: RGB_VC(RGB_View()))
+        case .bwg:
+            newVC(viewController: BWG_VC(BWG_View()))
+        case .contrast:
+            newVC(viewController: ContrastAndGammaVC())//ContrastAndGammaVC(ViewController()))
+        case .mainSpeaker:
+            newVC(viewController: MainSpeakVC(MainSpeakView()))
+        case .frontSpeaker:
+            newVC(viewController: FrontSpeakVC(FrontSpeakView()))
+        case .headphones:
+            newVC(viewController: HeadphonesSpeakVC(HeadphonesSpeakView()))
+        case .wifi:
+            newVC(viewController: WiFi_VC(StandartConnectionTestView()))
+        case .cellular:
+            newVC(viewController: CellularVC(StandartConnectionTestView()))
+        case .bluetooth:
+            newVC(viewController: BluetoothVC(StandartConnectionTestView()))
+        case .location:
+            newVC(viewController: LocationVC(LocationView()))
+        case .camera:
+            newVC(viewController: PhotoVC(PhotoView()))
+        case .flash:
+            newVC(viewController: FlashVC(FlashView()))
+        case .ambiLight:
+            newVC(viewController: AmbientLightSensorVC(StandartSensorsTestView()))
+        case .accelerometer:
+            newVC(viewController: AccelerVC(StandartSensorsTestView()))
+        case .distanсe:
+            newVC(viewController: DistanсeVC(StandartSensorsTestView()))
+        case .authorization:
+            newVC(viewController: AuthorizationVC(AuthorizationView()))
+        case .compass:
+            newVC(viewController: CompassVC())
+        case .none:
+            print("none")
+        }
     }
+    
 }

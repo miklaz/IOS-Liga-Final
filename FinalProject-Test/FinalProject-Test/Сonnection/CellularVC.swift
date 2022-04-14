@@ -32,6 +32,7 @@ final class CellularVC: UIViewController  {
         super.viewDidLoad()
         cellularView.settingsButton.alpha = 0
         cellularView.settingsButton.addTarget(self, action: #selector(openSettingsAction), for: .touchUpInside)
+        cellularView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
     }
     
     override func viewWillLayoutSubviews() {
@@ -56,21 +57,21 @@ final class CellularVC: UIViewController  {
     private func updateUserInterface() {
         switch Network.reachability.status {
         case .unreachable:
-            self.cellularView.statusLabel.text = "Cellular is turned off.\nPlease turn on cellular!"
-            self.cellularView.statusLabel.textColor = .systemRed
+            cellularView.statusLabel.text = "Cellular is turned off.\nPlease turn on cellular!"
+            cellularView.statusLabel.textColor = .systemRed
             prefsURl = "App-prefs:"
-            self.cellularView.settingsButton.setTitle("Open settings", for: .normal)
-            self.cellularView.settingsButton.alpha = 1
+            cellularView.settingsButton.setTitle("Open settings", for: .normal)
+            cellularView.settingsButton.alpha = 1
         case .wwan:
-            self.cellularView.statusLabel.text = "Cellular is working!"
-            self.cellularView.statusLabel.textColor = .systemGreen
-            self.cellularView.settingsButton.alpha = 0
+            cellularView.statusLabel.text = "Cellular is working!"
+            cellularView.statusLabel.textColor = .systemGreen
+            cellularView.settingsButton.alpha = 0
         case .wifi:
-            self.cellularView.statusLabel.text = "Please turn off Wi-Fi!"
-            self.cellularView.statusLabel.textColor = .systemYellow
+            cellularView.statusLabel.text = "Please turn off Wi-Fi!"
+            cellularView.statusLabel.textColor = .systemYellow
             prefsURl = "App-prefs:WIFI"
-            self.cellularView.settingsButton.setTitle("Open Wi-fi settings", for: .normal)
-            self.cellularView.settingsButton.alpha = 1
+            cellularView.settingsButton.setTitle("Open Wi-fi settings", for: .normal)
+            cellularView.settingsButton.alpha = 1
         }
         print("Reachability Summary")
         print("Status:", Network.reachability.status)
@@ -102,6 +103,11 @@ final class CellularVC: UIViewController  {
     
     @objc private func openSettingsAction() {
         showAlertSettings(title: "Open Settings?", message: "", url: URL(string: prefsURl))
+    }
+    
+    @objc private func dismissAction() {
+        self.dismiss(animated: true, completion: nil)
+        print("dismis")
     }
 }
 

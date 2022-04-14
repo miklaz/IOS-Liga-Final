@@ -14,8 +14,17 @@ final class CompassVC: UIViewController {
     private let canvasView = CompassView()
     private let comppassLocationManager = CLLocationManager()
     
+    private lazy var dismissButton = BaseUIButton(normalTitle: "✕",
+                                                  highlightedTitle: nil,
+                                                  setNormalTitleColor: .systemBlue,
+                                                  setHighlightedTitleColor: nil,
+                                                  fontSize: 30,
+                                                  fontWeight: .medium,
+                                                  cornerRadius: 0)
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
         config()
     }
     
@@ -28,6 +37,20 @@ final class CompassVC: UIViewController {
         view.addSubview(canvasView)
         comppassLocationManager.delegate = self
         comppassLocationManager.startUpdatingHeading()
+        
+        view.addSubview(dismissButton)
+        NSLayoutConstraint.activate([
+            dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            dismissButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            dismissButton.heightAnchor.constraint(equalToConstant: 45),
+            dismissButton.widthAnchor.constraint(equalToConstant: 45)
+        ])
+    }
+    
+    
+    @objc private func dismissAction() {
+        print("dismis")
+        dismiss(animated: true, completion: nil)
     }
 }
 

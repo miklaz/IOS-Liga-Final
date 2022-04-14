@@ -7,8 +7,11 @@
 
 import UIKit
 
+enum routeVC: Int {
+    case touch, rgb, bwg, contrast, mainSpeaker, frontSpeaker, headphones, wifi, cellular, bluetooth, location, camera, flash, ambiLight, accelerometer, distanсe, authorization, compass
+}
+
 struct MenuModel {
     let testName: String
     let testImage: UIImage
-    let viewController: UIViewController
 }

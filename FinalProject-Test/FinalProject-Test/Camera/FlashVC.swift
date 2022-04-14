@@ -30,7 +30,8 @@ final class FlashVC: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.flashView.torchButton.addTarget(self, action: #selector(activeFlash), for: .touchUpInside)
+        flashView.torchButton.addTarget(self, action: #selector(activeFlash), for: .touchUpInside)
+        flashView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
     }
     
     override func viewWillLayoutSubviews() {
@@ -63,25 +64,25 @@ final class FlashVC: UIViewController  {
                 try device.lockForConfiguration()
                 if (device.torchMode == .on) {
                     device.torchMode = .off
-                    self.flashView.statusLabel.text = "Light OFF"
-                    self.flashView.torchButton.setTitle("☼", for: .normal)
+                    flashView.statusLabel.text = "Light OFF"
+                    flashView.torchButton.setTitle("☼", for: .normal)
                 }
                 else {
                     device.torchMode = .on
-                    self.flashView.statusLabel.text = "Light ON"
-                    self.flashView.torchButton.setTitle("☀︎", for: .normal)
+                    flashView.statusLabel.text = "Light ON"
+                    flashView.torchButton.setTitle("☀︎", for: .normal)
                 }
                 device.unlockForConfiguration()
             }
             catch {
-                self.flashView.statusLabel.text = "Torch could not be used!"
-                self.flashView.torchButton.alpha = 0
+                flashView.statusLabel.text = "Torch could not be used!"
+                flashView.torchButton.alpha = 0
                 print(error)
             }
         }
         else {
-            self.flashView.statusLabel.text = "Torch is not available!"
-            self.flashView.torchButton.alpha = 0
+            flashView.statusLabel.text = "Torch is not available!"
+            flashView.torchButton.alpha = 0
             print("Torch is not available")
         }
     }
@@ -89,4 +90,10 @@ final class FlashVC: UIViewController  {
     @objc private func activeFlash() {
         flashlight()
     }
+    
+    @objc private func dismissAction() {
+        self.dismiss(animated: true, completion: nil)
+        print("dismis")
+    }
+    
 }

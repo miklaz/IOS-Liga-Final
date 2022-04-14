@@ -8,11 +8,43 @@
 import UIKit
 
 final class CanvasTouch: UIView {
+// MARK: - Const & Var
+    // to do
+    //var goToNavigationVC: (() -> Void)?
+    //var goToModallyVC: (() -> Void)?
     
-    // MARK: - Const, Var & Outlets
     private var lines = [[CGPoint]]()
+
+    lazy var dismissButton = BaseUIButton(normalTitle: "✕",
+                                                  highlightedTitle: nil,
+                                                  setNormalTitleColor: .systemBlue,
+                                                  setHighlightedTitleColor: nil,
+                                                  fontSize: 30,
+                                                  fontWeight: .medium,
+                                                  cornerRadius: 0)
+    init(){
+        super.init(frame: .zero)
+        configuration()
+    }
     
-    // MARK: - Methods
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - Private Metods
+extension CanvasTouch {
+    private func configuration(){
+        addSubview(dismissButton)
+        
+        NSLayoutConstraint.activate([
+            dismissButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
+            dismissButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            dismissButton.heightAnchor.constraint(equalToConstant: 45),
+            dismissButton.widthAnchor.constraint(equalToConstant: 45)
+        ])
+    }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         

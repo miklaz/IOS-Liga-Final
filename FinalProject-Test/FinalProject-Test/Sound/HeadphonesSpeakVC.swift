@@ -35,6 +35,7 @@ final class HeadphonesSpeakVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        headphonesSpeakView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
         headphonesSpeakView.playButton.alpha = 0
         headphonesSpeakView.playButton.addTarget(self, action: #selector(playSound), for: .touchUpInside)
         setupNotifications()
@@ -118,11 +119,10 @@ final class HeadphonesSpeakVC: UIViewController {
         self.headphonesSpeakView.statusLabel.text = "Okay, if you heard the sound, then the main speaker works!"
     }
     
-    
-// MARK: - To do
-//    @IBAction func dismissAction(_ sender: Any) {
-//    self.dismiss(animated: true, completion: nil)
-//}
+    @objc private func dismissAction() {
+        print("dismis")
+        dismiss(animated: true, completion: nil)
+    }
     
 }
 

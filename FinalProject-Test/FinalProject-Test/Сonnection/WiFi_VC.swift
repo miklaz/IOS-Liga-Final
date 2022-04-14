@@ -32,7 +32,7 @@ final class WiFi_VC: UIViewController  {
         wifiView.settingsButton.alpha = 0
         wifiView.settingsButton.addTarget(self, action: #selector(openSettingsAction), for: .touchUpInside)
         wifiView.settingsButton.setTitle("Open Wi-Fi Settings", for: .normal)
-
+        wifiView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
     }
     
     override func viewWillLayoutSubviews() {
@@ -57,17 +57,17 @@ final class WiFi_VC: UIViewController  {
     private func updateUserInterface() {
         switch Network.reachability.status {
         case .unreachable:
-            self.wifiView.statusLabel.text = "Wi-Fi is turned off.\nPlease turn on Wi-Fi and select network!"
-            self.wifiView.statusLabel.textColor = .systemRed
-            self.wifiView.settingsButton.alpha = 1
+            wifiView.statusLabel.text = "Wi-Fi is turned off.\nPlease turn on Wi-Fi and select network!"
+            wifiView.statusLabel.textColor = .systemRed
+            wifiView.settingsButton.alpha = 1
         case .wwan:
-            self.wifiView.statusLabel.text = "Please select a Wi-Fi network!"
-            self.wifiView.statusLabel.textColor = .systemYellow
-            self.wifiView.settingsButton.alpha = 1
+            wifiView.statusLabel.text = "Please select a Wi-Fi network!"
+            wifiView.statusLabel.textColor = .systemYellow
+            wifiView.settingsButton.alpha = 1
         case .wifi:
-            self.wifiView.statusLabel.text = "Wi-Fi is working and connected!"
-            self.wifiView.statusLabel.textColor = .systemGreen
-            self.wifiView.settingsButton.alpha = 0
+            wifiView.statusLabel.text = "Wi-Fi is working and connected!"
+            wifiView.statusLabel.textColor = .systemGreen
+            wifiView.settingsButton.alpha = 0
         }
         print("Reachability Summary")
         print("Status:", Network.reachability.status)
@@ -98,5 +98,10 @@ final class WiFi_VC: UIViewController  {
     
     @objc private func openSettingsAction() {
         showAlertWiFiSettings (title: "Open Wi-Fi Settings?", message: "")
+    }
+    
+    @objc private func dismissAction() {
+        self.dismiss(animated: true, completion: nil)
+        print("dismis")
     }
 }

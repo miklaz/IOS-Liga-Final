@@ -32,7 +32,9 @@ final class AuthorizationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         authorizationView.statusLabel.text = ""
-        self.authorizationView.authorizationButton.addTarget(self, action: #selector(scanID), for: .touchUpInside)
+        authorizationView.authorizationButton.addTarget(self, action: #selector(scanID), for: .touchUpInside)
+        authorizationView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
+
     }
     
     override func viewWillLayoutSubviews() {
@@ -43,11 +45,6 @@ final class AuthorizationVC: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    // MARK: - IBActions
-//    @IBAction func touchID(_ sender: Any) {
-//
-//    }
     
     @objc
     private func scanID() {
@@ -77,11 +74,8 @@ final class AuthorizationVC: UIViewController {
     }
     
     //to do dismiss
-    
-    
-//    @IBAction func dismissAction(_ sender: Any) {
-//        self.dismiss(animated: true, completion: nil)
-//    }
-    
-    
+    @objc private func dismissAction() {
+        print("dismis")
+        dismiss(animated: true, completion: nil)
+    }
 }

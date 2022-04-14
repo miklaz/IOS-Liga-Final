@@ -33,6 +33,7 @@ final class FrontSpeakVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        frontSpeakView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
         activateProximitySensor(isOn: true)
         frontSpeakView.configuration()
     }
@@ -109,10 +110,10 @@ final class FrontSpeakVC: UIViewController {
     }
     
     
-// MARK: - To do
-//    @IBAction func dismissAction(_ sender: Any) {
-//    self.dismiss(animated: true, completion: nil)
-//}
+    @objc private func dismissAction() {
+        print("dismis")
+        dismiss(animated: true, completion: nil)
+    }
     
 }
 

@@ -16,13 +16,13 @@ class StandartSensorsTestView: UIView {
                                        textColor: .label,
                                        cornerRadius: 13)
     
-//    private lazy var dismissButton = BaseUIButton(normalTitle: "✕",
-//                                                  highlightedTitle: nil,
-//                                                  setNormalTitleColor: .systemBlue,
-//                                                  setHighlightedTitleColor: nil,
-//                                                  fontSize: 30,
-//                                                  fontWeight: .medium,
-//                                                  cornerRadius: 0)
+    lazy var dismissButton = BaseUIButton(normalTitle: "✕",
+                                                  highlightedTitle: nil,
+                                                  setNormalTitleColor: .systemBlue,
+                                                  setHighlightedTitleColor: nil,
+                                                  fontSize: 30,
+                                                  fontWeight: .medium,
+                                                  cornerRadius: 0)
     
     init(){
         super.init(frame: .zero)
@@ -39,7 +39,7 @@ extension StandartSensorsTestView {
         
         addSubview(view)
         view.addSubview(statusLabel)
-        //view.addSubview(dismissButton)
+        view.addSubview(dismissButton)
         
         NSLayoutConstraint.activate([
             view.topAnchor.constraint(equalTo: self.topAnchor),
@@ -51,10 +51,10 @@ extension StandartSensorsTestView {
             statusLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             statusLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-//            dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-//            dismissButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-//            dismissButton.heightAnchor.constraint(equalToConstant: 45),
-//            dismissButton.widthAnchor.constraint(equalToConstant: 45)
+            dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            dismissButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            dismissButton.heightAnchor.constraint(equalToConstant: 45),
+            dismissButton.widthAnchor.constraint(equalToConstant: 45)
         ])
     }
 }

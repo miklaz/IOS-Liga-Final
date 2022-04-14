@@ -14,7 +14,7 @@ final class LocationView: UIView {
     //var goToModallyVC: (() -> Void)?
     private lazy var view = BaseUIView(backgroundColor: .systemBackground)
     
-    private lazy var statusLabel = BaseUILabel(text: "You are here?",
+    lazy var statusLabel = BaseUILabel(text: "You are here?",
                                                fontSize: 20,
                                                fontWeight: .medium,
                                                textColor: .label,
@@ -55,7 +55,6 @@ final class LocationView: UIView {
 // MARK: - Private Metods
 extension LocationView {
     func configuration() {
-        
         yesButton.backgroundColor = .init(white: 1, alpha: 0.4)
         noButton.backgroundColor = .init(white: 1, alpha: 0.4)
         statusLabel.backgroundColor = .init(white: 1, alpha: 0.4)

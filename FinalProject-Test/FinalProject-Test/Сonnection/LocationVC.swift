@@ -40,6 +40,7 @@ final class LocationVC: UIViewController {
         super.viewDidLoad()
         locationView.noButton.addTarget(self, action: #selector(noButtonAction), for: .touchUpInside)
         locationView.yesButton.addTarget(self, action: #selector(yesButtonAction), for: .touchUpInside)
+        locationView.statusLabel.text = "You are here?"
     }
     
     override func viewDidAppear(_ animated: Bool) {

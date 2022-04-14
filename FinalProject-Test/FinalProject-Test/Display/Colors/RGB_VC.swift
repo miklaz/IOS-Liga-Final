@@ -29,8 +29,7 @@ final class RGB_VC: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.rgbView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
-
+        rgbView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
     }
     
     override func viewWillLayoutSubviews() {
@@ -40,9 +39,9 @@ final class RGB_VC: UIViewController  {
     
 }
 
-//extension RGB_VC {
-//    @objc private func dismissAction() {
-//        self.dismiss(animated: true, completion: nil)
-//        print("dismis")
-//    }
-//}
+extension RGB_VC {
+    @objc private func dismissAction() {
+        self.dismiss(animated: true, completion: nil)
+        print("dismis")
+    }
+}

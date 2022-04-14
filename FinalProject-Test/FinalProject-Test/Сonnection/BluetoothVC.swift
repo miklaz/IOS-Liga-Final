@@ -34,7 +34,9 @@ final class BluetoothVC: UIViewController  {
         centralManager = CBCentralManager(delegate: self, queue: nil)
         bluetoothView.settingsButton.alpha = 0
         bluetoothView.settingsButton.addTarget(self, action: #selector(openBluetoothSettingsAction), for: .touchUpInside)
-        bluetoothView .settingsButton.setTitle("Open Bluetooth Settings", for: .normal)
+        bluetoothView.settingsButton.setTitle("Open Bluetooth Settings", for: .normal)
+        bluetoothView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
+
     }
     
     override func viewWillLayoutSubviews() {
@@ -65,6 +67,11 @@ final class BluetoothVC: UIViewController  {
     @objc private func openBluetoothSettingsAction() {
         showAlertBluetoothSettings (title: "Open Wi-Fi Settings?", message: "")
     }
+    
+    @objc private func dismissAction() {
+        self.dismiss(animated: true, completion: nil)
+        print("dismis")
+    }
 }
 
 extension BluetoothVC: CBCentralManagerDelegate {
@@ -82,7 +89,7 @@ extension BluetoothVC: CBCentralManagerDelegate {
             bluetoothView.settingsButton.alpha = 0
             case .unsupported:
                 print("Is Unsupported.")
-            bluetoothView.statusLabel.text = "Bluetooth is not supported on your device.\n(or Bluetooth is not working))"
+            bluetoothView.statusLabel.text = "Bluetooth is not supported on your device.\n(or Bluetooth is not working)"
             bluetoothView.statusLabel.textColor = .systemRed
             bluetoothView.settingsButton.alpha = 1
             case .unauthorized:

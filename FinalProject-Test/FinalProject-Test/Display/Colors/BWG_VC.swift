@@ -29,10 +29,18 @@ final class BWG_VC: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bwgView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.view.subviews.first?.frame = self.view.frame
+    }
+}
+
+extension BWG_VC {
+    @objc private func dismissAction() {
+        self.dismiss(animated: true, completion: nil)
+        print("dismis")
     }
 }

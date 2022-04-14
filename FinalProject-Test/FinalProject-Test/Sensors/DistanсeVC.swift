@@ -32,6 +32,7 @@ final class DistanсeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         distanсeView.statusLabel.text = "Hold there until the test is comlite."
+        distanсeView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
         activateProximitySensor()
     }
     
@@ -68,9 +69,10 @@ final class DistanсeVC: UIViewController {
     
     
 // MARK: - To do
-//    @IBAction func dismissAction(_ sender: Any) {
-//        self.dismiss(animated: true, completion: nil)
-//    }
+    @objc private func dismissAction() {
+        print("dismis")
+        dismiss(animated: true, completion: nil)
+    }
     
 }
 

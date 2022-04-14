@@ -24,13 +24,13 @@ class AuthorizationView: UIView {
                                                   fontWeight: .medium,
                                                   cornerRadius: 0)
     
-//    private lazy var dismissButton = BaseUIButton(normalTitle: "✕",
-//                                                  highlightedTitle: nil,
-//                                                  setNormalTitleColor: .systemBlue,
-//                                                  setHighlightedTitleColor: nil,
-//                                                  fontSize: 30,
-//                                                  fontWeight: .medium,
-//                                                  cornerRadius: 0)
+    lazy var dismissButton = BaseUIButton(normalTitle: "✕",
+                                                  highlightedTitle: nil,
+                                                  setNormalTitleColor: .systemBlue,
+                                                  setHighlightedTitleColor: nil,
+                                                  fontSize: 30,
+                                                  fontWeight: .medium,
+                                                  cornerRadius: 0)
     
     init(){
         super.init(frame: .zero)
@@ -47,7 +47,7 @@ extension AuthorizationView {
         
         addSubview(view)
         view.addSubview(statusLabel)
-        //view.addSubview(dismissButton)
+        view.addSubview(dismissButton)
         view.addSubview(authorizationButton)
         
         NSLayoutConstraint.activate([
@@ -64,10 +64,10 @@ extension AuthorizationView {
             authorizationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
             authorizationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
             
-//            dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-//            dismissButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-//            dismissButton.heightAnchor.constraint(equalToConstant: 45),
-//            dismissButton.widthAnchor.constraint(equalToConstant: 45)
+            dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            dismissButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            dismissButton.heightAnchor.constraint(equalToConstant: 45),
+            dismissButton.widthAnchor.constraint(equalToConstant: 45)
         ])
     }
 }

@@ -32,6 +32,7 @@ final class AmbientLightSensorVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ambientLightSensorView.statusLabel.text = "Hold there until the test is comlite."
+        ambientLightSensorView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
         addObservers()
     }
     
@@ -72,11 +73,10 @@ final class AmbientLightSensorVC: UIViewController {
     
     
     
-    // MARK: - IBActions
-//    @IBAction func dismissAction(_ sender: Any) {
-//        //_ = UIDevice.current.isProximityMonitoringEnabled = false
-//        self.dismiss(animated: true, completion: nil)
-//    }
+    @objc private func dismissAction() {
+        print("dismis")
+        dismiss(animated: true, completion: nil)
+    }
 
     
 }

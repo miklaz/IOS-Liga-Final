@@ -33,7 +33,8 @@ final class MainSpeakVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mainSpeakView.playButton.addTarget(self, action: #selector(playSound), for: .touchUpInside)
+        mainSpeakView.playButton.addTarget(self, action: #selector(playSound), for: .touchUpInside)
+        mainSpeakView.dismissButton.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
     }
     
     override func viewWillLayoutSubviews() {
@@ -64,9 +65,9 @@ final class MainSpeakVC: UIViewController {
     }
     
     
-// MARK: - To do
-//    @IBAction func dismissAction(_ sender: Any) {
-//    self.dismiss(animated: true, completion: nil)
-//}
+    @objc private func dismissAction() {
+        print("dismis")
+        dismiss(animated: true, completion: nil)
+    }
     
 }
