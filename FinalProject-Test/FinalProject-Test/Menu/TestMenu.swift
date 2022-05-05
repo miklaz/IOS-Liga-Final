@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TestMenu.swift
 //  FinalProject-Test
 //
 //  Created by Михаил Зайцев on 06.04.2022.
@@ -7,30 +7,48 @@
 
 import UIKit
 
-final class MainMenu: UIViewController {
+final class TestMenu: UIViewController {
         
     private var collectionView: UICollectionView?
     private let standardSpacing: CGFloat = 16
     
     private let data = [
-        MenuModel(testName: "Touch", testImage: UIImage(systemName: "scribble.variable")!),
-        MenuModel(testName: "RGB", testImage: UIImage(systemName: "rectangle.split.3x1")!),
-        MenuModel(testName: "BWG", testImage: UIImage(systemName: "rectangle.split.3x1.fill")!),
-        MenuModel(testName: "Contrast", testImage: UIImage(systemName: "checkerboard.rectangle")!),
-        MenuModel(testName: "Main Speaker", testImage: UIImage(systemName: "speaker.wave.2.fill")!),
-        MenuModel(testName: "Front Speaker", testImage: UIImage(systemName: "iphone.homebutton.radiowaves.left.and.right")!),
-        MenuModel(testName: "Headphones", testImage: UIImage(systemName: "beats.earphones")!),
-        MenuModel(testName: "Wi-Fi", testImage: UIImage(systemName: "wifi")!),
-        MenuModel(testName: "Cellular", testImage: UIImage(systemName: "simcard.fill")!),
-        MenuModel(testName: "Bluetooth", testImage: UIImage(systemName: "airplayaudio")!),
-        MenuModel(testName: "Location", testImage: UIImage(systemName: "mappin.and.ellipse")!),
-        MenuModel(testName: "Camera", testImage: UIImage(systemName: "camera.fill")!),
-        MenuModel(testName: "Flash", testImage: UIImage(systemName: "flashlight.on.fill")!),
-        MenuModel(testName: "AmbiLight", testImage: UIImage(systemName: "light.max")!),
-        MenuModel(testName: "Accelerometer", testImage: UIImage(systemName: "iphone.homebutton.landscape")!),
-        MenuModel(testName: "Distanсe", testImage: UIImage(systemName: "ruler.fill")!),
-        MenuModel(testName: "Authorization", testImage: UIImage(systemName: "faceid")!),
-        MenuModel(testName: "Compass", testImage: UIImage(systemName: "location.north.circle")!)
+        TestModel(testName: "Touch",
+                  testImage: UIImage(systemName: "scribble.variable")!),
+        TestModel(testName: "RGB",
+                  testImage: UIImage(systemName: "rectangle.split.3x1")!),
+        TestModel(testName: "BWG",
+                  testImage: UIImage(systemName: "rectangle.split.3x1.fill")!),
+        TestModel(testName: "Contrast",
+                  testImage: UIImage(systemName: "checkerboard.rectangle")!),
+        TestModel(testName: "Main Speaker",
+                  testImage: UIImage(systemName: "speaker.wave.2.fill")!),
+        TestModel(testName: "Front Speaker",
+                  testImage: UIImage(systemName: "iphone.homebutton.radiowaves.left.and.right")!),
+        TestModel(testName: "Headphones",
+                  testImage: UIImage(systemName: "beats.earphones")!),
+        TestModel(testName: "Wi-Fi",
+                  testImage: UIImage(systemName: "wifi")!),
+        TestModel(testName: "Cellular",
+                  testImage: UIImage(systemName: "simcard.fill")!),
+        TestModel(testName: "Bluetooth",
+                  testImage: UIImage(systemName: "airplayaudio")!),
+        TestModel(testName: "Location",
+                  testImage: UIImage(systemName: "mappin.and.ellipse")!),
+        TestModel(testName: "Camera",
+                  testImage: UIImage(systemName: "camera.fill")!),
+        TestModel(testName: "Flash",
+                  testImage: UIImage(systemName: "flashlight.on.fill")!),
+        TestModel(testName: "AmbiLight",
+                  testImage: UIImage(systemName: "light.max")!),
+        TestModel(testName: "Accelerometer",
+                  testImage: UIImage(systemName: "iphone.homebutton.landscape")!),
+        TestModel(testName: "Distanсe",
+                  testImage: UIImage(systemName: "ruler.fill")!),
+        TestModel(testName: "Authorization",
+                  testImage: UIImage(systemName: "faceid")!),
+        TestModel(testName: "Compass",
+                  testImage: UIImage(systemName: "location.north.circle")!)
     ]
 
     override func viewDidLoad() {
@@ -42,7 +60,7 @@ final class MainMenu: UIViewController {
     }
 }
 
-extension MainMenu {
+extension TestMenu {
     private func configCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -52,7 +70,7 @@ extension MainMenu {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         guard let collectionView = collectionView else { return }
-        collectionView.register(MainMenuCollectionViewCell.self, forCellWithReuseIdentifier: MainMenuCollectionViewCell.identifier)
+        collectionView.register(TestMenuCollectionViewCell.self, forCellWithReuseIdentifier: TestMenuCollectionViewCell.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -73,14 +91,14 @@ extension MainMenu {
     }
 }
 
-extension MainMenu: UICollectionViewDelegate, UICollectionViewDataSource {
+extension TestMenu: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainMenuCollectionViewCell.identifier, for: indexPath) as! MainMenuCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TestMenuCollectionViewCell.identifier, for: indexPath) as! TestMenuCollectionViewCell
         cell.configCell(label: "\(data[indexPath.row].testName)", image: data[indexPath.row].testImage)
     
         return cell
@@ -89,7 +107,7 @@ extension MainMenu: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("You selected cell \(data[indexPath.row].testName)!")
         
-        let route = routeVC.init(rawValue: indexPath.row) //indexPath.row
+        let route = routeVC.init(rawValue: indexPath.row)
         switch route {
         case .touch:
             newVC(viewController: TouchVC(CanvasTouch()))
@@ -131,5 +149,4 @@ extension MainMenu: UICollectionViewDelegate, UICollectionViewDataSource {
             print("none")
         }
     }
-    
 }

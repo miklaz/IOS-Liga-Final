@@ -56,7 +56,7 @@ final class PhotoVC: UIViewController  {
         present(imagePickerController, animated: true)
     }
     
-    private func showAlert(_ title: String) {   //  Выводит сообщения в виде alert
+    private func showAlert(_ title: String) {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true)
@@ -91,7 +91,7 @@ final class PhotoVC: UIViewController  {
 }
 
 extension PhotoVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    // MARK: - Methods
+// MARK: - Methods
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // Если нажали на кнопку Отмена, то UIImagePickerController надо закрыть
         picker.dismiss(animated: true)

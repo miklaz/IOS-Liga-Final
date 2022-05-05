@@ -18,8 +18,8 @@ final class TabBarController: UITabBarController{
 // MARK: - Private Metods
 extension TabBarController: UITabBarControllerDelegate {
     private func createTabBar() {
-        let collectionView = BaseNavigationController(rootViewController: MainMenu())
-        let tableView = BaseNavigationController(rootViewController: TableView())
+        let collectionView = BaseNavigationController(rootViewController: TestMenu())
+        let tableView = BaseNavigationController(rootViewController: HistoryTableVC())
         
         collectionView.title = "Menu"
         tableView.title = "History"

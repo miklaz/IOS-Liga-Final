@@ -1,5 +1,5 @@
 //
-//  MainMenuCollectionViewCell.swift
+//  TestMenuCollectionViewCell.swift
 //  FinalProject-Test
 //
 //  Created by Михаил Зайцев on 06.04.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainMenuCollectionViewCell: UICollectionViewCell {
+final class TestMenuCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "CustomCollectionViewCell"
     
