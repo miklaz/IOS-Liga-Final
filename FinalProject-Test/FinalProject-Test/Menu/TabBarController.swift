@@ -26,10 +26,8 @@ extension TabBarController: UITabBarControllerDelegate {
 
         setViewControllers([collectionView, tableView], animated: true)
         
-        let images = ["rectangle.lefthalf.inset.fill.arrow.left",
-                      "ruler"]
-        let selectedImages = ["rectangle.leftthird.inset.filled",
-                              "ruler.fill"]
+        let images = ["square.grid.3x3", "doc.plaintext"]
+        let selectedImages = ["square.grid.3x3.fill", "doc.plaintext.fill"]
         guard let items = tabBar.items else { return }
         for i in 0..<items.count{
             items[i].image = UIImage(systemName: images[i])

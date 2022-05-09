@@ -29,20 +29,20 @@ final class TestMenuCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private let statusView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemRed.withAlphaComponent(0.75)
-        view.layer.cornerRadius = 7.5
-        view.translatesAutoresizingMaskIntoConstraints = false
-
-        return view
-    }()
+//    private let statusView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .systemRed.withAlphaComponent(0.75)
+//        view.layer.cornerRadius = 7.5
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//
+//        return view
+//    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(imageTest)
         contentView.addSubview(titleTest)
-        contentView.addSubview(statusView)
+        //contentView.addSubview(statusView)
         contentView.clipsToBounds = true
         configuration()
     }
@@ -71,11 +71,11 @@ final class TestMenuCollectionViewCell: UICollectionViewCell {
             titleTest.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             titleTest.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
             
-            statusView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
-            statusView.leadingAnchor.constraint(equalTo: imageTest.trailingAnchor, constant: 2),
-            //statusView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6),
-            statusView.widthAnchor.constraint(equalToConstant: 15),
-            statusView.heightAnchor.constraint(equalToConstant: 15)
+//            statusView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
+//            statusView.leadingAnchor.constraint(equalTo: imageTest.trailingAnchor, constant: 2),
+//            //statusView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6),
+//            statusView.widthAnchor.constraint(equalToConstant: 15),
+//            statusView.heightAnchor.constraint(equalToConstant: 15)
 
         ])
     }
